@@ -1,0 +1,26 @@
+
+> durable-workflows@1.0.0 demo:crash
+> tsx scripts/crash-demo.ts
+
+CRASH DEMO run=4813d8f2-d166-4e8f-9e84-49ca25ab195a
+worker-A START fetch attempt=1 run=4813d8f2-d166-4e8f-9e84-49ca25ab195a
+worker-A DONE fetch attempt=1
+worker-A START extract attempt=1 run=4813d8f2-d166-4e8f-9e84-49ca25ab195a
+worker-A DONE extract attempt=1
+worker-A START summarize attempt=1 run=4813d8f2-d166-4e8f-9e84-49ca25ab195a
+worker-A DONE summarize attempt=1
+worker-A START evaluate attempt=1 run=4813d8f2-d166-4e8f-9e84-49ca25ab195a
+worker-A DONE evaluate attempt=1
+worker-A START store-report attempt=1 run=4813d8f2-d166-4e8f-9e84-49ca25ab195a
+EFFECT_COMMITTED 4813d8f2-d166-4e8f-9e84-49ca25ab195a:store-report; pausing before checkpoint
+kill -9 worker-A (report committed, step not checkpointed)
+Starting replacement worker-B
+worker-B START store-report attempt=2 run=4813d8f2-d166-4e8f-9e84-49ca25ab195a
+worker-B DONE store-report attempt=2
+fetch: done, attempts=1
+extract: done, attempts=1
+summarize: done, attempts=1
+evaluate: done, attempts=1
+store-report: done, attempts=2
+Reports stored: 1
+PASS: completed steps were not rerun; interrupted step retried; side effect stored exactly once.
